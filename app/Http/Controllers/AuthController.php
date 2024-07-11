@@ -98,7 +98,8 @@ class AuthController extends Controller
             return redirect()->route('welcome');
         }
 
-        return redirect()->route('welcome');
+        // return redirect()->route('welcome');
+        return view('dashboard');
     }
 }
     
