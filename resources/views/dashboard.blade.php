@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" href="{{ asset('assets/image/sepeda.png') }}" type="image/png">
     <title>Document</title>
 </head>
 <style>
@@ -33,6 +34,7 @@
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
                                 <a class="nav-link" href="#cattegory">Cattegory</a>
                                 <a class="nav-link" href="#feature">Feature</a>
+                                <a class="nav-link" href="{{ route('login') }}">Login</a>
                             </div>
                         </div>
                     </div>
@@ -78,20 +80,33 @@
     <div class="container" id="feature">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center pt-5" >Feature Product</h1>
+                <h1 class="text-center pt-5">Feature Product</h1>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-xl-3">
-                <img style="width: 100%" src="{{ asset('assets/image/old.jpg') }}" alt="">
-                <div class="text">
-                    <p class="text-center" style="font-size: 30px">Jenis</p>
-                    <p class="text-center">Nama Product</p>
+            @foreach ($produks as $produk)
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                    <img class="py-2" style="width: 100%; height:250px" src="{{ asset('storage/' . $produk->image) }}"
+                        alt="">
+                    <div class="text my-2">
+                        <p class="text-center" style="font-size: 20px">{{ $produk->jenis }}</p>
+                        <p class="text-center" style="font-size: 35px">{{ $produk->nama }}</p>
+                        <div class="desc d-flex justify-content-between">
+                            <div class="harga d-flex">
+                                <p>Harga :</p>
+                                <p>Rp.{{ $produk->harga }}</p>
+                            </div>
+                            <div class="stock d-flex">
+                                <p>Stock :</p>
+                                <p>{{ $produk->stock }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </body>
 <footer>
-    <p class="text-center py-0 my-0 mb-2">Follow Our Social Media</p>
+    <p class="text-center py-0 my-0 mb-2 mt-5">Follow Our Social Media</p>
     <div class="social d-flex pt-0 mt-0" style="justify-content: center">
         <i class="fa-brands fa-instagram px-2" style="font-size:20px"></i>
         <i class="fa-brands fa-facebook px-2" style="font-size:20px"></i>
@@ -104,4 +119,5 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
 <script src="https://kit.fontawesome.com/e94cdb9596.js" crossorigin="anonymous"></script>
+
 </html>

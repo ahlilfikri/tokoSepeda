@@ -13,7 +13,7 @@
             /* background: rgb(22,26,48);background: linear-gradient(90deg, rgba(22,26,48,1) 0%, rgba(27,27,105,1) 35%, rgba(22,26,48,1) 100%); */
         </style>
     </head>
-    <body class="d-flex align-items-center justify-content-center" style="min-height: 100vh;background:white">
+    <body class="d-flex align-items-center justify-content-center my-4" style="min-height: 100vh;background:white">
         <div class="col-lg-5">
             <div class="card " style="border: 1px solid black; border-radius: 2vw;">
                 <div class="card-header">
@@ -38,6 +38,12 @@
                         <div class="mb-3">
                             <div class="d-grid">
                                 <button class="btn btn-outline-dark">Login</button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-grid">
+                                <a href="{{ route('dashboard') }}" >Kembali Ke Laman Utama?</a>
+                                <a href="{{ route('register') }}" >Belum Punya Akun?</a>
                             </div>
                         </div>
                     </form>                    

@@ -63,6 +63,6 @@
             @endforeach
         </tbody>
     </table>
-    <button type="button" class="btn bg-custom-color text-light" data-toggle="modal" data-target="#createModal">Tambah Produk</button>
+    <button type="button" class="btn bg-custom-color text-light mb-5" data-toggle="modal" data-target="#createModal">Tambah Produk</button>
     @include('produks.create')
 @endsection
