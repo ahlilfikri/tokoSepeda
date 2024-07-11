@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PenjualanController;
 
 
 Route::get('/', [AuthController::class, 'createAdmin']);
@@ -26,4 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/produk/{produk}/edit', [ProdukController::class, 'edit'])->name('produks.edit');
     Route::put('/produk/{produk}', [ProdukController::class, 'update'])->name('produks.update');
     Route::delete('/produk/{produk}', [ProdukController::class, 'destroy'])->name('produks.destroy');
+
+    Route::post('/pemesanan', [PenjualanController::class, 'buyNow'])->name('buyNow');
+    Route::get('/pemesanan', [PenjualanController::class,'index'])->name('penjualans.index');
 });

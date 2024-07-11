@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="icon" href="{{ asset('assets/image/sepeda.png') }}" type="image/png">
     <style>
         .bg-custom-color {
@@ -45,15 +46,17 @@
                             <a class="py-2 pb-0 m-0 d-flex nav-link {{ Request::routeIs('produks.index') ? 'active bg-custom-color' : 'text-dark' }}"
                                 href="{{ route('produks.index') }}" style="color : #DBE7C9 !important">
                                 <i class="fa-solid fa-box pt-1"></i>
-                                <p class="px-2 py-0 mb-2">Produk</p>
+                                <p class="px-2 py-0 mb-2 " style="color: #9c9c9c">Produk</p>
                             </a>
                         </li>
                         <span>Transaksi</span>
-                        {{-- <li class="nav-item">
-                        <a class="nav-link {{ Request::routeIs('pemesanans.index') ? 'active bg-custom-color' : 'text-dark' }}" href="{{ route('pemesanans.index') }}" style="color : #DBE7C9 !important">
-                            <i class="fa-solid fa-cart-shopping mr-2"></i>Pemesanan
-                        </a>
-                    </li> --}}
+                        <li class="nav-item">
+                            <a class="py-2 pb-0 m-0 d-flex nav-link {{ Request::routeIs('penjualans.index') ? 'active bg-custom-color' : 'text-dark' }}"
+                                href="{{ route('penjualans.index') }}" style="color : #DBE7C9 !important">
+                                <i class="fa-solid fa-box pt-1"></i>
+                                <p class="px-2 py-0 mb-2 " style="color: #9c9c9c">Pemesanan</p>
+                            </a>
+                        </li>
                         <span>Laporan</span>
                         {{-- <li class="nav-item">
                         <a class="nav-link {{ Request::routeIs('jurnal.laporan') ? 'active bg-custom-color' : 'text-dark' }}" href="{{ route('jurnal.laporan') }}" style="color : #DBE7C9 !important">
@@ -74,7 +77,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/e94cdb9596.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
