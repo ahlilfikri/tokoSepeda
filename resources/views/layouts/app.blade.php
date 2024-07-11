@@ -35,9 +35,9 @@
         </div>
         <div class="row p-0 m-0">
             <div class="col-2 ">
-                
+
                 <nav id="sidebar" class="sidebar p-0"
-                    style="position: fixed; top: 0; bottom: 0; overflow-y: auto; height: 100%; z-index: 1; border-right: 1px solid black; width: 15vw" >
+                    style="position: fixed; top: 0; bottom: 0; overflow-y: auto; height: 100%; z-index: 1; border-right: 1px solid black; width: 15vw">
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column" style="color : rgb(74, 72, 72) !important">
                             <li class="nav-item">
@@ -61,11 +61,13 @@
                                 </a>
                             </li>
                             <span>Laporan</span>
-                            {{-- <li class="nav-item">
-                            <a class="nav-link {{ Request::routeIs('jurnal.laporan') ? 'active bg-custom-color' : 'text-dark' }}" href="{{ route('jurnal.laporan') }}" style="color : #DBE7C9 !important">
-                                <i class="fa-solid fa-book mr-2"></i>  Jurnal
-                            </a>
-                        </li> --}}
+                            <li class="nav-item">
+                                <a class="py-2 pb-0 m-0 d-flex nav-link {{ Request::routeIs('penjualans.laporan') ? 'active bg-custom-color' : 'text-dark' }}"
+                                    href="{{ route('penjualans.laporan') }}" style="color : #DBE7C9 !important">
+                                    <i class="fa-solid fa-box pt-1" style="color:#003C43"></i>
+                                    <p class="px-2 py-0 mb-2 " style="color: #9c9c9c">Laporan Penjualan</p>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>

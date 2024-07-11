@@ -33,6 +33,8 @@
         <thead>
             <tr>
                 <th>No</th>
+                <th>ID Penjualan</th>
+                <th>Tanggal</th>
                 <th>Nama</th>
                 <th>Jenis</th>
                 <th>Harga</th>
@@ -60,12 +62,14 @@
                 <tr>
                     @if ($isNewPenjualan)
                         <td rowspan="{{ $rowspan }}">{{ $loop->iteration }}</td>
+                        <td rowspan="{{ $rowspan }}">{{ $penjualan->penjualans->id }}</td>
+                        <td rowspan="{{ $rowspan }}">{{ $penjualan->penjualans->tanggal }}</td>
                     @endif
                     <td>{{ $penjualan->produks->nama }}</td>
                     <td>{{ $penjualan->produks->jenis }}</td>
-                    <td>{{ $penjualan->produks->harga }}</td>
+                    <td>Rp.{{ number_format( $penjualan->produks->harga , 0, ',', '.') }}</td>
                     <td>{{ $penjualan->jumlah }}</td>
-                    <td>{{ $penjualan->produks->harga * $penjualan->jumlah }}</td>
+                    <td>Rp.{{ number_format( $penjualan->produks->harga * $penjualan->jumlah, 0, ',', '.') }}</td>
                     <td>{{ $penjualan->penjualans->status }}</td>
                     @if ($isNewPenjualan)
                         <td rowspan="{{ $rowspan }}">

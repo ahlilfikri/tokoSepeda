@@ -5,6 +5,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\LaporanController;
 
 
 Route::get('/', [AuthController::class, 'createAdmin']);
@@ -33,5 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/penjualans/{penjualan}/approve', [PenjualanController::class, 'approve'])->name('penjualans.approve');
     Route::post('/penjualans/{penjualan}/reject', [PenjualanController::class, 'reject'])->name('penjualans.reject');
+
+    Route::get('/laporan-penjualan', [LaporanController::class, 'index'])->name('penjualans.laporan');
 
 });
