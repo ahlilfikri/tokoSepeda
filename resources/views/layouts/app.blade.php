@@ -31,45 +31,50 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-
             </div>
-            <nav id="sidebar" class="col-5 col-sm-4 col-md-3 col-lg-2 sidebar"
-                style="position: fixed; top: 0; bottom: 0; overflow-y: auto; height: 100%; z-index: 1; border-right: 1px solid black">
-                <div class="sidebar-sticky">
-                    <ul class="nav flex-column" style="color : rgb(74, 72, 72) !important">
-                        <li class="nav-item">
-                            <i class="fa-solid fa-house mr-2"></i>Dashboard
+        </div>
+        <div class="row p-0 m-0">
+            <div class="col-2 ">
+                
+                <nav id="sidebar" class="sidebar p-0"
+                    style="position: fixed; top: 0; bottom: 0; overflow-y: auto; height: 100%; z-index: 1; border-right: 1px solid black; width: 15vw" >
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column" style="color : rgb(74, 72, 72) !important">
+                            <li class="nav-item">
+                                <i class="fa-solid fa-house mr-2"></i>Dashboard
+                                </a>
+                            </li>
+                            <span class="mt-5">Master-Data</span>
+                            <li class="nav-item">
+                                <a class="py-2 pb-0 m-0 d-flex nav-link {{ Request::routeIs('produks.index') ? 'active bg-custom-color' : 'text-dark' }}"
+                                    href="{{ route('produks.index') }}" style="color : #DBE7C9 !important">
+                                    <i class="fa-solid fa-box pt-1" style="color: #003C43"></i>
+                                    <p class="px-2 py-0 mb-2 " style="color: #9c9c9c">Produk</p>
+                                </a>
+                            </li>
+                            <span>Transaksi</span>
+                            <li class="nav-item">
+                                <a class="py-2 pb-0 m-0 d-flex nav-link {{ Request::routeIs('penjualans.index') ? 'active bg-custom-color' : 'text-dark' }}"
+                                    href="{{ route('penjualans.index') }}" style="color : #DBE7C9 !important">
+                                    <i class="fa-solid fa-box pt-1" style="color:#003C43"></i>
+                                    <p class="px-2 py-0 mb-2 " style="color: #9c9c9c">Pemesanan</p>
+                                </a>
+                            </li>
+                            <span>Laporan</span>
+                            {{-- <li class="nav-item">
+                            <a class="nav-link {{ Request::routeIs('jurnal.laporan') ? 'active bg-custom-color' : 'text-dark' }}" href="{{ route('jurnal.laporan') }}" style="color : #DBE7C9 !important">
+                                <i class="fa-solid fa-book mr-2"></i>  Jurnal
                             </a>
-                        </li>
-                        <span class="mt-5">Master-Data</span>
-                        <li class="nav-item">
-                            <a class="py-2 pb-0 m-0 d-flex nav-link {{ Request::routeIs('produks.index') ? 'active bg-custom-color' : 'text-dark' }}"
-                                href="{{ route('produks.index') }}" style="color : #DBE7C9 !important">
-                                <i class="fa-solid fa-box pt-1"></i>
-                                <p class="px-2 py-0 mb-2 " style="color: #9c9c9c">Produk</p>
-                            </a>
-                        </li>
-                        <span>Transaksi</span>
-                        <li class="nav-item">
-                            <a class="py-2 pb-0 m-0 d-flex nav-link {{ Request::routeIs('penjualans.index') ? 'active bg-custom-color' : 'text-dark' }}"
-                                href="{{ route('penjualans.index') }}" style="color : #DBE7C9 !important">
-                                <i class="fa-solid fa-box pt-1"></i>
-                                <p class="px-2 py-0 mb-2 " style="color: #9c9c9c">Pemesanan</p>
-                            </a>
-                        </li>
-                        <span>Laporan</span>
-                        {{-- <li class="nav-item">
-                        <a class="nav-link {{ Request::routeIs('jurnal.laporan') ? 'active bg-custom-color' : 'text-dark' }}" href="{{ route('jurnal.laporan') }}" style="color : #DBE7C9 !important">
-                            <i class="fa-solid fa-book mr-2"></i>  Jurnal
-                        </a>
-                    </li> --}}
-                    </ul>
-                </div>
-            </nav>
-            <main role="main" class="col-7 col-sm-8 col-md-9 col-lg-10"
-                style="overflow-y: auto; min-height: 100%; position: relative; margin-left:16.6vw">
-                @yield('content')
-            </main>
+                        </li> --}}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-10">
+                <main role="main " style="overflow-y: auto;">
+                    @yield('content')
+                </main>
+            </div>
         </div>
     </div>
 

@@ -11,9 +11,9 @@ Route::get('/', [AuthController::class, 'createAdmin']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 // Route::get('/home', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
-Route::get('/login', [AuthController::class, 'login'])->name('login'); 
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
-Route::get('/register', [AuthController::class, 'register'])->name('register'); 
+Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => 'auth'], function () {
@@ -29,5 +29,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/produk/{produk}', [ProdukController::class, 'destroy'])->name('produks.destroy');
 
     Route::post('/pemesanan', [PenjualanController::class, 'buyNow'])->name('buyNow');
-    Route::get('/pemesanan', [PenjualanController::class,'index'])->name('penjualans.index');
+    Route::get('/pemesanan', [PenjualanController::class, 'index'])->name('penjualans.index');
+
+    Route::post('/penjualans/{penjualan}/approve', [PenjualanController::class, 'approve'])->name('penjualans.approve');
+    Route::post('/penjualans/{penjualan}/reject', [PenjualanController::class, 'reject'])->name('penjualans.reject');
+
 });

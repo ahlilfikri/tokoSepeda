@@ -12,10 +12,15 @@ class DetailPenjualan extends Model
     protected $fillable = [
         'produk',
         'jumlah',
+        'penjualan',
     ];
 
     public function produks()
     {
         return $this->belongsTo(Produk::class, 'produk');
+    }
+    public function penjualans()
+    {
+        return $this->belongsTo(Penjualan::class, 'penjualan');
     }
 }

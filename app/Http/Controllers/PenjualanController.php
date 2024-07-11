@@ -7,21 +7,19 @@ use App\Models\DetailPenjualan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
-
 
 class PenjualanController extends Controller
 {
     public function buyNow(Request $request)
     {
-        $cartItems = $request->all();
-        
+        $cartItems = json_decode($request->cart_data, true);
+
         DB::beginTransaction();
 
         try {
             $penjualan = Penjualan::create([
-                'tanggal' => now(),
-                'status' => 'baru'
+                'tanggal' => now()->format('Y-m-d'),
+                'status' => 'belum disetujui'
             ]);
 
             foreach ($cartItems as $item) {
@@ -43,15 +41,10 @@ class PenjualanController extends Controller
             }
 
             DB::commit();
-            return redirect()->back()->with('success','Penjualan Created Successfully');
-        }catch (ValidationException $e) {
-            dd($e);
-            DB::rollBack();
-            return redirect()->back()->withErrors($e->validator)->withInput();
+            return redirect()->route('dashboard')->with('success', 'Penjualan created successfully.');
         } catch (\Exception $e) {
-            dd($e);
             DB::rollBack();
-            return redirect()->route('produks.index')->with('error', $e->getMessage())->withInput();
+            return redirect()->route('dashboard')->with('error', $e->getMessage())->withInput();
         }
     }
 
@@ -68,6 +61,22 @@ class PenjualanController extends Controller
         $penjualans = $query->get();
 
         return view('penjualan.index', compact('penjualans'));
+    }
+
+    public function approve(Penjualan $penjualan)
+    {
+        $penjualan->status = 'disetujui';
+        $penjualan->save();
+
+        return redirect()->route('penjualans.index')->with('success', 'Penjualan disetujui.');
+    }
+
+    public function reject(Penjualan $penjualan)
+    {
+        $penjualan->status = 'ditolak';
+        $penjualan->save();
+
+        return redirect()->route('penjualans.index')->with('error', 'Penjualan ditolak.');
     }
 
 }

@@ -1,5 +1,3 @@
-<!-- resources/views/penjualans/index.blade.php -->
-
 @extends('layouts.app')
 
 @section('content')
@@ -38,20 +36,49 @@
                 <th>Nama</th>
                 <th>Jenis</th>
                 <th>Harga</th>
-                <th>Stock</th>
-                <th>Image</th>
+                <th>Quantity</th>
+                <th>Jumlah</th>
+                <th>Status</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
+            @php
+                $oldPenjualan = -1;
+                $rowspan = 0;
+            @endphp
             @foreach ($penjualans as $penjualan)
+                @php
+                    $newPenjualan = $penjualan->penjualan;
+                    $isNewPenjualan = $oldPenjualan != $newPenjualan;
+                    $oldPenjualan = $newPenjualan;
+
+                    if ($isNewPenjualan) {
+                        $rowspan = $penjualans->where('penjualan', $newPenjualan)->count();
+                    }
+                @endphp
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $penjualan->nama }}</td>
-                    <td>{{ $penjualan->jenis }}</td>
-                    <td>{{ $penjualan->harga }}</td>
-                    <td>{{ $penjualan->stock }}</td>
-                    <td><img src="{{ asset('storage/' . $penjualan->image) }}" width="100">
-                    </td>
+                    @if ($isNewPenjualan)
+                        <td rowspan="{{ $rowspan }}">{{ $loop->iteration }}</td>
+                    @endif
+                    <td>{{ $penjualan->produks->nama }}</td>
+                    <td>{{ $penjualan->produks->jenis }}</td>
+                    <td>{{ $penjualan->produks->harga }}</td>
+                    <td>{{ $penjualan->jumlah }}</td>
+                    <td>{{ $penjualan->produks->harga * $penjualan->jumlah }}</td>
+                    <td>{{ $penjualan->penjualans->status }}</td>
+                    @if ($isNewPenjualan)
+                        <td rowspan="{{ $rowspan }}">
+                            <form action="{{ route('penjualans.approve', $penjualan) }}" method="POST" style="display: inline-block;">
+                                @csrf
+                                <button type="submit" class="btn btn-success">Setujui</button>
+                            </form>
+                            <form action="{{ route('penjualans.reject', $penjualan) }}" method="POST" style="display: inline-block;">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Tolak</button>
+                            </form>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,8 +34,18 @@
         }
     </style>
 </head>
-
 <body>
+    @if (session('success'))
+        <div class="alert alert-success my-3">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger my-3">
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="container-fluid" style="overflow-x: hidden !important;">
         <div class="row p-0">
             <div class="col-12">
@@ -130,11 +139,15 @@
     <div class="container" id="cart">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center pt-5">Cart</h1>
-                <ul id="cart-items" class="list-group">
-                    <!-- Cart items will be appended here dynamically -->
-                </ul>
-                <button id="buy-now" class="btn btn-success mt-3">Buy Now</button>
+                <form action="{{ route('buyNow') }}" method="post" id="cart-form">
+                    @csrf
+                    <h1 class="text-center pt-5">Cart</h1>
+                    <ul id="cart-items" class="list-group">
+                        <!-- Cart items will be appended here dynamically -->
+                    </ul>
+                    <input type="hidden" name="cart_data" id="cart-data">
+                    <button id="buy-now" class="btn btn-success mt-3">Buy Now</button>
+                </form>
             </div>
         </div>
     </div>
@@ -196,29 +209,15 @@
                 });
             });
 
-            // document.getElementById('buy-now').addEventListener('click', function () {
-            //     if (cart.length > 0) {
-            //         const cartData = getCartItems();
-            //         fetch('{{ route('buyNow') }}', {
-            //             method: 'POST',
-            //             headers: {
-            //                 'Content-Type': 'application/json',
-            //                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            //             },
-            //             body: cartData
-            //         }).then(response => {
-            //             if (response.ok) {
-            //                 alert('Purchase successful!');
-            //                 cart = [];
-            //                 updateCartDisplay();
-            //             } else {
-            //                 alert('Purchase failed. Please try again.');
-            //             }
-            //         });
-            //     } else {
-            //         alert('Your cart is empty.');
-            //     }
-            // });
+            document.getElementById('cart-form').addEventListener('submit', function (event) {
+                if (cart.length > 0) {
+                    const cartData = getCartItems();
+                    document.getElementById('cart-data').value = cartData;
+                } else {
+                    alert('Your cart is empty.');
+                    event.preventDefault();
+                }
+            });
         });
 
         function updateCartDisplay() {
@@ -252,5 +251,4 @@
         }
     </script>
 </body>
-
 </html>
