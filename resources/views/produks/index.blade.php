@@ -14,7 +14,7 @@
             {{ session('error') }}
         </div>
     @endif
-
+    
     <h2 class="mt-2">Master Data > Data Produk</h2>
 
     <div class="mb-3 mt-5">

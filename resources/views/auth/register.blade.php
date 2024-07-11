@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Register Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="icon" href="{{ asset('assets/image/sepeda.png') }}" type="image/png">
     <style>
         .bg-custom-color {
-            background-color: #5AB2FF;
+            background-color: white;
         }
     </style>
 </head>
-<body class="d-flex align-items-center justify-content-center" style="min-height: 100vh;background:#5AB2FF">
+<body class="d-flex align-items-center justify-content-center" style="min-height: 100vh;background:white">
     <div class="col-lg-5">
-        <div class="card shadow-lg" style="border: none; border-radius: 3vw;">
+        <div class="card" style="border: 1px solid black; border-radius: 1vw;">
             <div class="card-header">
-                <h1 class="card-title text-center py-3" style="color:#5AB2FF">Welcome</h1>
+                <h1 class="card-title text-center py-3" style="color:black">REGISTER</h1>
             </div>
             <div class="card-body">
                 @if(Session::has('error'))
@@ -61,7 +62,7 @@
                             </div>
                         @endif
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <label for="kode">Daftar Sebagai:</label>
                         <select id="kode" name="kode" class="form-control" required>
                             <option value="">---Pilih Role---</option>
@@ -76,9 +77,15 @@
                     </div>
                     <div class="mb-3">
                         <div class="d-grid">
-                            <button class="btn btn-primary bg-custom-color text-light">Register</button>
+                            <button class="btn btn-outline-dark">Register</button>
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <div class="d-grid">
+                            <a href="{{ route('login') }}" >Sudah Punya Akun?</a>
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div>

@@ -17,7 +17,7 @@
     <div class="container-fluid" style="overflow-x: hidden !important;">
         <div class="row p-0">
             <div class="col-12">
-                <h1 class="text-center">TokoSepeda</h1>
+                <h1 class="text-center">KAYUH</h1>
             </div>
             <div class="col-0 col-md-4"></div>
             <div class="col-12 col-md-4">
@@ -31,8 +31,8 @@
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav m-auto">
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
-                                <a class="nav-link" href="#">Features</a>
-                                <a class="nav-link" href="#">Pricing</a>
+                                <a class="nav-link" href="#cattegory">Cattegory</a>
+                                <a class="nav-link" href="#feature">Feature</a>
                             </div>
                         </div>
                     </div>
@@ -47,14 +47,14 @@
                     style="background-color:rgba(23, 21, 21, 0.6); min-height:350px; min-width: 100vw;">
                     <p class="pt-5">SUMMER COLLECTION</p>
                     <h1>SUMMER BYCYCLE SALE</h1>
-                    <p class="px-5 pt-4">We are thrilled to welcome you to TokoSepeda, your go-to destination for buying
+                    <p class="px-5 pt-4">We are thrilled to welcome you to KAYUH, your go-to destination for buying
                         and selling new and used bicycles. Whether you're looking for the latest models or a reliable
                         pre-owned bike, we have something for everyone. </p>
                     <button class="btn btn-outline-light mb-3">Shop Now</button>
                 </div>
             </div>
         </div>
-        <div class="row p-0 py-4 ">
+        <div class="row p-0 py-4" id="cattegory">
             <div class="col-12 col-md-6">
                 <img class="m-auto d-flex justify-center" style="height:500px;"
                     src="{{ asset('assets/image/old.jpg') }}" alt="">
@@ -75,7 +75,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container" id="feature">
         <div class="row">
             <div class="col-12">
                 <h1 class="text-center pt-5" >Feature Product</h1>
@@ -104,5 +104,4 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
 <script src="https://kit.fontawesome.com/e94cdb9596.js" crossorigin="anonymous"></script>
-
 </html>
