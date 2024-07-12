@@ -73,11 +73,11 @@
                     <td>{{ $penjualan->penjualans->status }}</td>
                     @if ($isNewPenjualan)
                         <td rowspan="{{ $rowspan }}">
-                            <form action="{{ route('penjualans.approve', $penjualan) }}" method="POST" style="display: inline-block;">
+                            <form action="{{ route('penjualans.approve', $penjualan->penjualans->id) }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 <button type="submit" class="btn btn-success">Setujui</button>
                             </form>
-                            <form action="{{ route('penjualans.reject', $penjualan) }}" method="POST" style="display: inline-block;">
+                            <form action="{{ route('penjualans.reject', $penjualan->penjualans->id) }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 <button type="submit" class="btn btn-danger">Tolak</button>
                             </form>

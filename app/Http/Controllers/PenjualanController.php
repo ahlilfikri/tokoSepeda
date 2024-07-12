@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Penjualan;
 use App\Models\DetailPenjualan;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -38,6 +39,10 @@ class PenjualanController extends Controller
                     'jumlah' => $item['quantity'],
                     'penjualan' => $penjualan->id,
                 ]);
+                $selectedProduk = Produk::where('id', $item->id)->first();
+                $dataUpdate = [];
+                $dataUpdate['stock'] = $selectedProduk->stock - $item->quantity;
+                $selectedProduk->update($dataUpdate);
             }
 
             DB::commit();
@@ -75,6 +80,14 @@ class PenjualanController extends Controller
     {
         $penjualan->status = 'ditolak';
         $penjualan->save();
+
+        $selectedDetail = DetailPenjualan::where('penjualan', $penjualan->id)->get();
+        foreach ($selectedDetail as $detail) {
+            $selectedProduk = Produk::where('id', $detail->produk)->first();
+            $dataUpdate = [];
+            $dataUpdate['stock'] = $selectedProduk->stock + $selectedProduk->jumlah;
+            $selectedProduk->update($dataUpdate);
+        }
 
         return redirect()->route('penjualans.index')->with('error', 'Penjualan ditolak.');
     }
