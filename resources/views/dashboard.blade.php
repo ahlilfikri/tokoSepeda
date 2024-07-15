@@ -19,7 +19,7 @@
 
         .product-card img {
             height: 250px;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         .product-card .text {

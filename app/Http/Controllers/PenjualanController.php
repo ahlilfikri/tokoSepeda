@@ -22,26 +22,25 @@ class PenjualanController extends Controller
                 'tanggal' => now()->format('Y-m-d'),
                 'status' => 'belum disetujui'
             ]);
-
             foreach ($cartItems as $item) {
                 $validator = Validator::make($item, [
                     'id' => 'required|exists:produks,id',
                     'quantity' => 'required|integer|min:1',
                     'price' => 'required|numeric',
                 ]);
-
+                
                 if ($validator->fails()) {
                     throw new \Exception('Validation failed');
                 }
-
+                
                 DetailPenjualan::create([
                     'produk' => $item['id'],
                     'jumlah' => $item['quantity'],
                     'penjualan' => $penjualan->id,
                 ]);
-                $selectedProduk = Produk::where('id', $item->id)->first();
+                $selectedProduk = Produk::where('id', $item['id'])->first();
                 $dataUpdate = [];
-                $dataUpdate['stock'] = $selectedProduk->stock - $item->quantity;
+                $dataUpdate['stock'] = $selectedProduk->stock - $item['quantity'];
                 $selectedProduk->update($dataUpdate);
             }
 
