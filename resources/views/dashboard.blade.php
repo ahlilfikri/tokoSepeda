@@ -194,7 +194,7 @@
                             }
                         } else {
                             cart.push({
-                                id: productId,
+                                id: productId, 
                                 name: productName,
                                 price: productPrice,
                                 quantity: quantity,
