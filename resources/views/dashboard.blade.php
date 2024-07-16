@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,6 +35,7 @@
         }
     </style>
 </head>
+
 <body>
     @if (session('success'))
         <div class="alert alert-success my-3">
@@ -83,13 +85,14 @@
                     <p class="px-5 pt-4">We are thrilled to welcome you to KAYUH, your go-to destination for buying
                         and selling new and used bicycles. Whether you're looking for the latest models or a reliable
                         pre-owned bike, we have something for everyone.</p>
-                    <button class="btn btn-outline-light mb-3">Shop Now</button>
+                    <a href="#feature"><button class="btn btn-outline-light mb-3">Shop Now</button></a>
                 </div>
             </div>
         </div>
         <div class="row p-0 py-4" id="cattegory">
             <div class="col-12 col-md-6">
-                <img class="m-auto d-flex justify-center" style="height:500px;" src="{{ asset('assets/image/old.jpg') }}" alt="">
+                <img class="m-auto d-flex justify-center" style="height:500px;max-width:90vw"
+                    src="{{ asset('assets/image/old.jpg') }}" alt="">
                 <div class="text p-3 m-auto my-2"
                     style="width:fit-content; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); border-radius:1vh">
                     <h3 class="text-center">OLD BIKE</h3>
@@ -97,7 +100,8 @@
                 </div>
             </div>
             <div class="col-12 col-md-6">
-                <img class="m-auto d-flex justify-center" style="height: 500px;" src="{{ asset('assets/image/new.jpg') }}" alt="">
+                <img class="m-auto d-flex justify-center" style="height: 500px;max-width:90vw;"
+                    src="{{ asset('assets/image/new.jpg') }}" alt="">
                 <div class="text p-3 m-auto my-2"
                     style="width:fit-content; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); border-radius:1vh">
                     <h3 class="text-center">NEW BIKE</h3>
@@ -112,27 +116,31 @@
                 <h1 class="text-center pt-5">Feature Product</h1>
             </div>
             @foreach ($produks as $produk)
-            <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-4">
-                <div class="product-card">
-                    <img class="py-2" style="width: 100%;" src="{{ asset('storage/' . $produk->image) }}" alt="">
-                    <div class="text my-2">
-                        <p class="text-center" style="font-size: 20px">{{ $produk->jenis }}</p>
-                        <p class="text-center" style="font-size: 35px">{{ $produk->nama }}</p>
-                        <div class="desc d-flex justify-content-between">
-                            <div class="harga d-flex">
-                                <p>Harga :</p>
-                                <p>Rp.{{ $produk->harga }}</p>
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-4">
+                    <div class="product-card">
+                        <img class="py-2" style="width: 100%;" src="{{ asset('storage/' . $produk->image) }}"
+                            alt="">
+                        <div class="text my-2">
+                            <p class="text-center" style="font-size: 20px">{{ $produk->jenis }}</p>
+                            <p class="text-center" style="font-size: 35px">{{ $produk->nama }}</p>
+                            <div class="desc d-flex justify-content-between">
+                                <div class="harga d-flex">
+                                    <p>Harga :</p>
+                                    <p>Rp.{{ $produk->harga }}</p>
+                                </div>
+                                <div class="stock d-flex">
+                                    <p>Stock :</p>
+                                    <p>{{ $produk->stock }}</p>
+                                </div>
                             </div>
-                            <div class="stock d-flex">
-                                <p>Stock :</p>
-                                <p>{{ $produk->stock }}</p>
-                            </div>
+                            <input type="number" class="form-control mb-2 quantity" min="1"
+                                max="{{ $produk->stock }}" value="1">
+                            <button class="btn btn-primary btn-add-to-cart" data-id="{{ $produk->id }}"
+                                data-name="{{ $produk->nama }}" data-price="{{ $produk->harga }}"
+                                data-stock="{{ $produk->stock }}">Add to Cart</button>
                         </div>
-                        <input type="number" class="form-control mb-2 quantity" min="1" max="{{ $produk->stock }}" value="1">
-                        <button class="btn btn-primary btn-add-to-cart" data-id="{{ $produk->id }}" data-name="{{ $produk->nama }}" data-price="{{ $produk->harga }}" data-stock="{{ $produk->stock }}">Add to Cart</button>
                     </div>
                 </div>
-            </div>
             @endforeach
         </div>
     </div>
@@ -155,8 +163,8 @@
     <footer>
         <p class="text-center py-0 my-0 mb-2 mt-5">Follow Our Social Media</p>
         <div class="social d-flex pt-0 mt-0" style="justify-content: center">
-            <i class="fa-brands fa-instagram px-2" style="font-size:20px"></i>
-            <i class="fa-brands fa-facebook px-2" style="font-size:20px"></i>
+            <a class="text-dark" href="https://www.instagram.com/ahlilfikri94/"><i class="fa-brands fa-instagram px-2" style="font-size:20px"></i></a>
+            <a class="text-dark" href="https://www.facebook.com/profile.php?id=100091909297582"><i class="fa-brands fa-facebook px-2" style="font-size:20px"></i></a>
         </div>
         <p class="text-center mt-3">©Muhamad Ahlil Fikri</p>
     </footer>
@@ -169,11 +177,11 @@
     <script>
         let cart = [];
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const buttons = document.querySelectorAll('.btn-add-to-cart');
 
             buttons.forEach(button => {
-                button.addEventListener('click', function () {
+                button.addEventListener('click', function() {
                     const productId = this.getAttribute('data-id');
                     const productName = this.getAttribute('data-name');
                     const productPrice = this.getAttribute('data-price');
@@ -194,7 +202,7 @@
                             }
                         } else {
                             cart.push({
-                                id: productId, 
+                                id: productId,
                                 name: productName,
                                 price: productPrice,
                                 quantity: quantity,
@@ -204,12 +212,13 @@
 
                         updateCartDisplay();
                     } else {
-                        alert('Invalid quantity. Please enter a value between 1 and ' + productStock + '.');
+                        alert('Invalid quantity. Please enter a value between 1 and ' +
+                            productStock + '.');
                     }
                 });
             });
 
-            document.getElementById('cart-form').addEventListener('submit', function (event) {
+            document.getElementById('cart-form').addEventListener('submit', function(event) {
                 if (cart.length > 0) {
                     const cartData = getCartItems();
                     document.getElementById('cart-data').value = cartData;
@@ -226,15 +235,17 @@
 
             cart.forEach(item => {
                 const cartItem = document.createElement('li');
-                cartItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
-                cartItem.innerHTML = `${item.name} - Quantity: ${item.quantity} - Price: Rp.${item.price} <button class="btn btn-danger btn-sm btn-remove-from-cart" data-id="${item.id}">Delete</button>`;
+                cartItem.classList.add('list-group-item', 'd-flex', 'justify-content-between',
+                'align-items-center');
+                cartItem.innerHTML =
+                    `${item.name} - Quantity: ${item.quantity} - Price: Rp.${item.price} <button class="btn btn-danger btn-sm btn-remove-from-cart" data-id="${item.id}">Delete</button>`;
                 cartItemsContainer.appendChild(cartItem);
             });
 
             const deleteButtons = document.querySelectorAll('.btn-remove-from-cart');
 
             deleteButtons.forEach(button => {
-                button.addEventListener('click', function () {
+                button.addEventListener('click', function() {
                     const productId = this.getAttribute('data-id');
                     removeFromCart(productId);
                 });
@@ -251,4 +262,5 @@
         }
     </script>
 </body>
+
 </html>

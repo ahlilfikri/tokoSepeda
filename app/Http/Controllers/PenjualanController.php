@@ -58,8 +58,7 @@ class PenjualanController extends Controller
 
         if ($request->has('search')) {
             $searchTerm = $request->input('search');
-            $query->where('nama', 'like', '%' . $searchTerm . '%')
-                ->orWhere('jenis', 'like', '%' . $searchTerm . '%');
+            $query->where('status', 'like', '%' . $searchTerm . '%');
         }
 
         $penjualans = $query->get();

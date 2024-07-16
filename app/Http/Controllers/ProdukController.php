@@ -16,7 +16,9 @@ class ProdukController extends Controller
         if ($request->has('search')) {
             $searchTerm = $request->input('search');
             $query->where('nama', 'like', '%' . $searchTerm . '%')
-                ->orWhere('jenis', 'like', '%' . $searchTerm . '%');
+                ->orWhere('jenis', 'like', '%' . $searchTerm . '%')
+                ->orWhere('stock', 'like', '%' . $searchTerm . '%')
+                ->orWhere('harga', 'like', '%' . $searchTerm . '%');
         }
 
         $produks = $query->get();
