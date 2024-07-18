@@ -62,8 +62,13 @@ class AuthController extends Controller
         try {
             $credentials = $request->only('email', 'password');
             if (Auth::attempt($credentials)) {
-                return redirect()->route('welcome')->with('success', 'Login successful');
-            }
+                
+                $user = Auth::user();
+                if ($user->role == "buyer") {
+                    return redirect()->route('dashboard')->with('success', 'Berhasil Masuk Sebagai Pembeli');
+                } else {
+                    return redirect()->route('welcome')->with('success', 'Berhasil Masuk Sebagai Penjual');
+                }            }
             return back()->with('error', 'Invalid email or password');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage())->withInput();
@@ -78,25 +83,25 @@ class AuthController extends Controller
 
     public function createAdmin()
     {
-        $adminExists = User::where('email', 'admin123@gmail.com')->exists();
+        // $adminExists = User::where('email', 'admin123@gmail.com')->exists();
 
-        if (!$adminExists) {
-            $admin = new User();
-            $admin->name = 'Admin';
-            $admin->email = 'admin123@gmail.com';
-            $admin->role = 'admin';
-            $admin->password = Hash::make('admin123');
-            $admin->save();
+        // if (!$adminExists) {
+        //     $admin = new User();
+        //     $admin->name = 'Admin';
+        //     $admin->email = 'admin123@gmail.com';
+        //     $admin->role = 'admin';
+        //     $admin->password = Hash::make('admin123');
+        //     $admin->save();
 
-            $owner = new User();
-            $owner->name = 'Owner';
-            $owner->email = 'owner123@gmail.com';
-            $owner->role = 'owner';
-            $owner->password = Hash::make('owner123');
-            $owner->save();
+        //     $owner = new User();
+        //     $owner->name = 'Owner';
+        //     $owner->email = 'owner123@gmail.com';
+        //     $owner->role = 'owner';
+        //     $owner->password = Hash::make('owner123');
+        //     $owner->save();
 
-            return redirect()->route('welcome');
-        }
+        //     return redirect()->route('welcome');
+        // }
 
         // return redirect()->route('welcome');
         return redirect()->route('dashboard');
